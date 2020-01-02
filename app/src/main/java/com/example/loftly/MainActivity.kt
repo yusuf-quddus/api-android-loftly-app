@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
 
 @Composable
 fun PostItem() {
-    Card() {
+    Card(elevation = 2.dp) {
         Padding(padding = 8.dp) {
            Column() {
                Container(expanded = true, height = 180.dp) {
@@ -45,8 +45,12 @@ fun PostItem() {
                )
 
                HeightSpacer(height = 16.dp)
-               Row() {
-                   Row() {
+               FlowRow(
+                   mainAxisSize = LayoutSize.Expand,
+                   mainAxisAlignment = MainAxisAlignment.SpaceBetween,
+                   crossAxisAlignment = FlowCrossAxisAlignment.Center
+               )  {
+                   Row {
                        Container(width = 40.dp, height = 40.dp) {
                            Clip(shape = CircleShape) {
                                DrawImage(image = +imageResource(R.drawable.profile2))
@@ -73,11 +77,11 @@ fun PostItem() {
                    Column() {
                        Text(
                            text = "Oct 24, 2019",
-                           style = androidx.ui.text.TextStyle(fontSize = 14.sp, color = Color.LightGray)
+                           style = androidx.ui.text.TextStyle(fontSize = 14.sp, color = Color.DarkGray)
                        )
                        Text(
                            text = "200 Applicants",
-                           style = androidx.ui.text.TextStyle(fontSize = 14.sp, color = Color.LightGray))
+                           style = androidx.ui.text.TextStyle(fontSize = 14.sp, color = Color.DarkGray))
 
                    }
 
