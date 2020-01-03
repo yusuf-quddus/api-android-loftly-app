@@ -66,6 +66,7 @@ class MainActivity : AppCompatActivity() {
 }
 
 
+
 /*
 listingView:
     Main function outputs favorite listing page
@@ -77,6 +78,7 @@ fun listingsView(children: @Composable() () -> Unit) {
 
 
 
+
 /*
 AllListings:
     Holds All Favorite Listings of the page
@@ -85,12 +87,30 @@ AllListings:
 fun AllListings(list:ArrayList<ListingPost>) {
     VerticalScroller() {
         Column {
+            PageTitle()
             for(item in list) {
                 PostItem(post = item)
             }
         }
     }
 }
+
+
+
+
+/*
+*/
+@Composable
+fun PageTitle() {
+    Container(modifier = Spacing(left = 5.dp, top = 2.dp, bottom = 2.dp, right = 5.dp)) {
+        Text(
+            // Monthly Rental Cost
+            text = "Favorite Listings",
+            style = androidx.ui.text.TextStyle(fontSize = 24.sp, color = Color.Black, fontWeight = FontWeight.Bold)
+        )
+    }
+}
+
 
 
 
@@ -117,6 +137,7 @@ fun PostItem(post:ListingPost) {
 
 
 
+
 /*
 listingImage:
     Shows image of listing property
@@ -128,6 +149,7 @@ fun listingImage(image:Int) {
         DrawImage(houseImage)
     }
 }
+
 
 
 
@@ -152,6 +174,7 @@ fun listingInfo(post: ListingPost) {
 
 
 
+
 /*
 Address:
     Location of listing property
@@ -163,6 +186,7 @@ fun Address(address:String) {
         style = androidx.ui.text.TextStyle(fontSize = 18.sp, fontWeight = FontWeight.Bold)
     )
 }
+
 
 
 
@@ -215,6 +239,7 @@ fun AuthorInfo(post: ListingPost) {
 
 
 
+
 /*
 
  */
@@ -237,6 +262,7 @@ fun ButtonListing(choice:Int) {
             ))
         }
 }
+
 
 
 /*
@@ -278,3 +304,4 @@ fun DefaultPreview() {
         AllListings(list)
     }
 }
+    
