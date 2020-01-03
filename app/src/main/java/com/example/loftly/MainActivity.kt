@@ -31,11 +31,22 @@ class MainActivity : AppCompatActivity() {
     }
 }
 
+
+/*
+listingView:
+    Main function outputs favorite listing page
+ */
 @Composable
 fun listingsView(children: @Composable() () -> Unit) {
     children()
 }
 
+
+
+/*
+AllListings:
+    Holds All Favorite Listings of the page
+ */
 @Composable
 fun AllListings() {
     VerticalScroller() {
@@ -48,6 +59,13 @@ fun AllListings() {
     }
 }
 
+
+
+/*
+PostItem:
+    A listing post with an image of listing
+    and information about the listing
+ */
 @Composable
 fun PostItem() {
     Ripple(bounded = true) {
@@ -64,6 +82,12 @@ fun PostItem() {
     }
 }
 
+
+
+/*
+listingImage:
+    Shows image of listing property
+ */
 @Composable
 fun listingImage() {
     Container(expanded = true, height = 180.dp) {
@@ -72,6 +96,13 @@ fun listingImage() {
     }
 }
 
+
+
+/*
+listingInfo:
+    Shows info about listing property including
+    address and author info
+ */
 @Composable
 fun listingInfo() {
     HeightSpacer(height = 16.dp)
@@ -86,6 +117,12 @@ fun listingInfo() {
     }
 }
 
+
+
+/*
+Address:
+    Location of listing property
+ */
 @Composable
 fun Address() {
     Text(
@@ -94,6 +131,12 @@ fun Address() {
     )
 }
 
+
+
+/*
+AuthorInfo:
+    Listing Author profile image, name and title and posting info
+ */
 @Composable
 fun AuthorInfo() {
     Row {
@@ -122,16 +165,23 @@ fun AuthorInfo() {
     }
     Column() {
         Text(
+            // Monthly Rental Cost
             text = "$4,400",
             style = androidx.ui.text.TextStyle(fontSize = 14.sp, color = Color.DarkGray)
         )
         Text(
+            // Posted Date
             text = "Oct 24, 2019",
             style = androidx.ui.text.TextStyle(fontSize = 14.sp, color = Color.DarkGray))
 
     }
 }
 
+
+/*
+DefaultPreview:
+    Preview code on android device
+ */
 @Preview
 @Composable
 fun DefaultPreview() {
