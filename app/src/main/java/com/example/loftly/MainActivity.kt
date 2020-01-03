@@ -9,9 +9,11 @@ import androidx.ui.core.Text
 import androidx.ui.material.MaterialTheme
 import androidx.ui.material.surface.Card
 import androidx.ui.foundation.DrawImage
+import androidx.ui.foundation.VerticalScroller
 import androidx.ui.foundation.shape.corner.CircleShape
 import androidx.ui.graphics.Color
 import androidx.ui.layout.*
+import androidx.ui.material.ripple.Ripple
 import androidx.ui.res.imageResource
 import androidx.ui.text.font.FontWeight
 import androidx.ui.tooling.preview.Preview
@@ -22,8 +24,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            MaterialTheme {
-                PostItem()
+            listingsView {
+                AllListings()
             }
         }
     }
@@ -35,13 +37,29 @@ fun listingsView(children: @Composable() () -> Unit) {
 }
 
 @Composable
+fun AllListings() {
+    VerticalScroller() {
+        Column {
+            PostItem()
+            PostItem()
+            PostItem()
+            PostItem()
+        }
+    }
+}
+
+@Composable
 fun PostItem() {
-    Card(elevation = 2.dp) {
-        Padding(padding = 8.dp) {
-           Column {
-              listingImage();
-               listingInfo()
-           }
+    Ripple(bounded = true) {
+        Container(modifier = Spacing(top = 4.dp, bottom = 4.dp)) {
+            Card(elevation = 2.dp) {
+                Padding(padding = 12.dp) {
+                    Column {
+                        listingImage();
+                        listingInfo()
+                    }
+                }
+            }
         }
     }
 }
@@ -118,6 +136,6 @@ fun AuthorInfo() {
 @Composable
 fun DefaultPreview() {
     listingsView {
-        PostItem()
+        AllListings()
     }
 }
