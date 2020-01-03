@@ -103,11 +103,18 @@ fun AllListings(list:ArrayList<ListingPost>) {
 @Composable
 fun PageTitle() {
     Container(modifier = Spacing(left = 5.dp, top = 2.dp, bottom = 2.dp, right = 5.dp)) {
-        Text(
-            // Monthly Rental Cost
-            text = "Favorite Listings",
-            style = androidx.ui.text.TextStyle(fontSize = 24.sp, color = Color.Black, fontWeight = FontWeight.Bold)
-        )
+        FlowRow(
+            mainAxisSize = LayoutSize.Expand,
+            mainAxisAlignment = MainAxisAlignment.Center
+            // crossAxisAlignment = FlowCrossAxisAlignment.Center
+        )  {
+            Text(
+                // Monthly Rental Cost
+                text = "Favorite Listings",
+                style = androidx.ui.text.TextStyle(fontSize = 24.sp, color = Color.Black, fontWeight = FontWeight.W500)
+            )
+        }
+
     }
 }
 
@@ -304,4 +311,3 @@ fun DefaultPreview() {
         AllListings(list)
     }
 }
-    
