@@ -1,18 +1,22 @@
 package com.example.loftly
 
+import android.graphics.Paint
 import android.os.Bundle
+import android.widget.Checkable
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.Composable
 import androidx.compose.unaryPlus
 import androidx.ui.core.*
 import androidx.ui.core.Text
-import androidx.ui.material.MaterialTheme
 import androidx.ui.material.surface.Card
 import androidx.ui.foundation.DrawImage
 import androidx.ui.foundation.VerticalScroller
+import androidx.ui.foundation.shape.border.Border
 import androidx.ui.foundation.shape.corner.CircleShape
+import androidx.ui.foundation.shape.corner.RoundedCornerShape
 import androidx.ui.graphics.Color
 import androidx.ui.layout.*
+import androidx.ui.material.*
 import androidx.ui.material.ripple.Ripple
 import androidx.ui.res.imageResource
 import androidx.ui.text.font.FontWeight
@@ -31,7 +35,7 @@ class MainActivity : AppCompatActivity() {
         list.add(ListingPost(
             image = R.drawable.house2,
             address = "555 Terrace Point",
-            cost = "4,400",
+            cost = "$4,400",
             datePosted = "Oct 24, 2019",
             name = "Papa John",
             profilePic = R.drawable.profile2,
@@ -39,7 +43,7 @@ class MainActivity : AppCompatActivity() {
         list.add(ListingPost(
             image = R.drawable.house3,
             address = "666 Hell Highway",
-            cost = "2,500",
+            cost = "$2,500",
             datePosted = "Oct 24, 2019",
             name = "Prajeet Patel",
             profilePic = R.drawable.profile1,
@@ -47,7 +51,7 @@ class MainActivity : AppCompatActivity() {
         list.add(ListingPost(
             image = R.drawable.house4,
             address = "1212 Vogel Ct",
-            cost = "3,000",
+            cost = "$3,000",
             datePosted = "Oct 24, 2019",
             name = "Stacey Abrams",
             profilePic = R.drawable.profile3,
@@ -84,10 +88,6 @@ fun AllListings(list:ArrayList<ListingPost>) {
             for(item in list) {
                 PostItem(post = item)
             }
-          /*  PostItem()
-            PostItem()
-            PostItem()
-            PostItem()*/
         }
     }
 }
@@ -172,31 +172,34 @@ AuthorInfo:
  */
 @Composable
 fun AuthorInfo(post: ListingPost) {
-    Row {
-        Container(width = 40.dp, height = 40.dp) {
-            Clip(shape = CircleShape) {
-                DrawImage(image = +imageResource(post.profilePic))
+    Column() {
+        Row() {
+            Container(width = 40.dp, height = 40.dp) {
+                Clip(shape = CircleShape) {
+                    DrawImage(image = +imageResource(post.profilePic))
+                }
+            }
+            Column(modifier = Spacing(left = 8.dp)) {
+                Text(
+                    text = post.name,
+                    style = androidx.ui.text.TextStyle(
+                        fontSize = 14.sp,
+                        fontWeight = FontWeight.W600
+                    )
+                )
+                HeightSpacer(height = 2.dp)
+                Text(
+                    text = post.title,
+                    style = androidx.ui.text.TextStyle(
+                        fontSize = 12.sp,
+                        color = Color.DarkGray
+                    )
+                )
             }
         }
-        Column(modifier = Spacing(left = 8.dp)) {
-            Text(
-                text = post.name,
-                style = androidx.ui.text.TextStyle(
-                    fontSize = 14.sp,
-                    fontWeight = FontWeight.W600
-                )
-            )
-            HeightSpacer(height = 2.dp)
-            Text(
-                text = post.title,
-                style = androidx.ui.text.TextStyle(
-                    fontSize = 12.sp,
-                    color = Color.DarkGray
-                )
-            )
-        }
+        ButtonListing(1)
     }
-    Column() {
+    Column {
         Text(
             // Monthly Rental Cost
             text = post.cost,
@@ -206,8 +209,33 @@ fun AuthorInfo(post: ListingPost) {
             // Posted Date
             text = post.datePosted,
             style = androidx.ui.text.TextStyle(fontSize = 14.sp, color = Color.DarkGray))
-
+        ButtonListing(2)
     }
+}
+
+
+
+/*
+
+ */
+@Composable
+fun ButtonListing(choice:Int) {
+    if(choice == 1)
+        Container(modifier = Spacing(top = 10.dp, bottom = 4.dp)) {
+            Button(text = "View Listing",modifier = Spacing(top = 5.dp), style = OutlinedButtonStyle(
+                Border(color = Color.Green, width = 1.dp),
+                shape = RoundedCornerShape(20),
+                contentColor = Color.Green
+            ))
+        }
+    else if (choice == 2)
+        Container(modifier = Spacing(top = 10.dp, bottom = 4.dp)) {
+            Button(text = "Remove",modifier = Spacing(top = 5.dp), style = OutlinedButtonStyle(
+                Border(color = Color.Red, width = 1.dp),
+                shape = RoundedCornerShape(20),
+                contentColor = Color.Red
+            ))
+        }
 }
 
 
@@ -218,7 +246,7 @@ DefaultPreview:
 @Preview
 @Composable
 fun DefaultPreview() {
-    
+
     val list = ArrayList<ListingPost>()
     list.add(ListingPost(
         image = R.drawable.house2,
