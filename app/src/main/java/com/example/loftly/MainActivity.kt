@@ -122,11 +122,11 @@ fun AuthorInfo() {
     }
     Column() {
         Text(
-            text = "Oct 24, 2019",
+            text = "$4,400",
             style = androidx.ui.text.TextStyle(fontSize = 14.sp, color = Color.DarkGray)
         )
         Text(
-            text = "200 Applicants",
+            text = "Oct 24, 2019",
             style = androidx.ui.text.TextStyle(fontSize = 14.sp, color = Color.DarkGray))
 
     }
