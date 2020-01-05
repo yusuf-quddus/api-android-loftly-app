@@ -24,6 +24,8 @@ import androidx.ui.tooling.preview.Preview
 import java.time.format.TextStyle
 import androidx.ui.core.Text as Text1
 
+// #FC3D4D
+
 class MainActivity : AppCompatActivity() {
 
 
@@ -87,34 +89,11 @@ AllListings:
 fun AllListings(list:ArrayList<ListingPost>) {
     VerticalScroller() {
         Column {
-            PageTitle()
+            TopBar()
             for(item in list) {
                 PostItem(post = item)
             }
         }
-    }
-}
-
-
-
-
-/*
-*/
-@Composable
-fun PageTitle() {
-    Container(modifier = Spacing(left = 5.dp, top = 2.dp, bottom = 2.dp, right = 5.dp)) {
-        FlowRow(
-            mainAxisSize = LayoutSize.Expand,
-            mainAxisAlignment = MainAxisAlignment.Center
-            // crossAxisAlignment = FlowCrossAxisAlignment.Center
-        )  {
-            Text(
-                // Monthly Rental Cost
-                text = "Favorite Listings",
-                style = androidx.ui.text.TextStyle(fontSize = 24.sp, color = Color.Black, fontWeight = FontWeight.W500)
-            )
-        }
-
     }
 }
 
@@ -142,6 +121,20 @@ fun PostItem(post:ListingPost) {
     }
 }
 
+
+/*
+ */
+@Composable
+fun TopBar() {
+TopAppBar<String>(
+    color = Color.White,
+    title = {
+    Text(text = "Favorite Listings", style = androidx.ui.text.TextStyle(color = Color.Red))
+    },
+    actionData = emptyList()) {
+
+}
+}
 
 
 
@@ -228,7 +221,7 @@ fun AuthorInfo(post: ListingPost) {
                 )
             }
         }
-        ButtonListing(2)
+        ButtonListing(1)
     }
     Column {
         Text(
@@ -240,7 +233,7 @@ fun AuthorInfo(post: ListingPost) {
             // Posted Date
             text = post.datePosted,
             style = androidx.ui.text.TextStyle(fontSize = 14.sp, color = Color.DarkGray))
-        // ButtonListing(2)
+        ButtonListing(2)
     }
 }
 
@@ -253,19 +246,14 @@ fun AuthorInfo(post: ListingPost) {
 fun ButtonListing(choice:Int) {
     if(choice == 1)
         Container(modifier = Spacing(top = 10.dp, bottom = 4.dp)) {
-            Button(text = "View Listing",modifier = Spacing(top = 5.dp), style = OutlinedButtonStyle(
-                Border(color = Color.Green, width = 1.dp),
-                shape = RoundedCornerShape(20),
-                contentColor = Color.Green
+            Button(text = "View Listing", modifier = Spacing(top = 5.dp), style = OutlinedButtonStyle(
+                border = Border(color = Color.Red, width = 1.dp),
+                contentColor = Color.Red //parseColor("#519c3f")
             ))
         }
     else if (choice == 2)
         Container(modifier = Spacing(top = 10.dp, bottom = 4.dp)) {
-            Button(text = "Remove",modifier = Spacing(top = 5.dp), style = OutlinedButtonStyle(
-                Border(color = Color.Red, width = 1.dp),
-                shape = RoundedCornerShape(40),
-                contentColor = Color.Red
-            ))
+            Button(text = "Remove",modifier = Spacing(top = 5.dp), style = TextButtonStyle(contentColor = Color.Red))
         }
 }
 
