@@ -105,8 +105,9 @@ fun PageTitle() {
     Container(modifier = Spacing(left = 5.dp, top = 2.dp, bottom = 2.dp, right = 5.dp)) {
         FlowRow(
             mainAxisSize = LayoutSize.Expand,
-            mainAxisAlignment = MainAxisAlignment.Center)
-        {
+            mainAxisAlignment = MainAxisAlignment.Center
+            // crossAxisAlignment = FlowCrossAxisAlignment.Center
+        )  {
             Text(
                 // Monthly Rental Cost
                 text = "Favorite Listings",
@@ -227,7 +228,7 @@ fun AuthorInfo(post: ListingPost) {
                 )
             }
         }
-        ButtonListing()
+        ButtonListing(2)
     }
     Column {
         Text(
@@ -239,6 +240,7 @@ fun AuthorInfo(post: ListingPost) {
             // Posted Date
             text = post.datePosted,
             style = androidx.ui.text.TextStyle(fontSize = 14.sp, color = Color.DarkGray))
+        // ButtonListing(2)
     }
 }
 
@@ -246,15 +248,22 @@ fun AuthorInfo(post: ListingPost) {
 
 
 /*
-ButtonListing:
-    Places remove listing button on page to remove from favorite listings
  */
 @Composable
-fun ButtonListing() {
+fun ButtonListing(choice:Int) {
+    if(choice == 1)
+        Container(modifier = Spacing(top = 10.dp, bottom = 4.dp)) {
+            Button(text = "View Listing",modifier = Spacing(top = 5.dp), style = OutlinedButtonStyle(
+                Border(color = Color.Green, width = 1.dp),
+                shape = RoundedCornerShape(20),
+                contentColor = Color.Green
+            ))
+        }
+    else if (choice == 2)
         Container(modifier = Spacing(top = 10.dp, bottom = 4.dp)) {
             Button(text = "Remove",modifier = Spacing(top = 5.dp), style = OutlinedButtonStyle(
                 Border(color = Color.Red, width = 1.dp),
-                shape = RoundedCornerShape(90),
+                shape = RoundedCornerShape(40),
                 contentColor = Color.Red
             ))
         }
